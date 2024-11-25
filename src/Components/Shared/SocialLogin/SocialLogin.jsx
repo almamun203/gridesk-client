@@ -24,8 +24,8 @@ const SocialLogin = () => {
         <div className="text-center">
       <p className="text-sm font-semibold underline"> Or, Sign Up With</p>
       <div className="flex justify-center gap-4 my-3">
-       <FaGoogle onClick={handleGoogleSignIn} size={28} className="cursor-pointer"></FaGoogle>
-       <FaGithub className="cursor-pointer" size={28}></FaGithub>
+       <FaGoogle onClick={handleGoogleSignIn} size={28} className="cursor-pointer hover:scale-110"></FaGoogle>
+       <FaGithub className="hover:scale-110 cursor-pointer" size={28}></FaGithub>
       </div>
     </div>
     );

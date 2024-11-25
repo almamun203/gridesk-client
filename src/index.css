@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@400..900&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.anton{
+    font-family: "Anton", sans-serif;
+  }
+.aust{
+    font-family: "Edu AU VIC WA NT Arrows", cursive;
+    font-optical-sizing: auto;
+  }
+.cinzel{
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+  }
+.linkDesign:hover{
+    background:none;
+    color: black;
+}
+

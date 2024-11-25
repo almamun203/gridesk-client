@@ -1,34 +1,51 @@
 import { Link } from "react-router-dom";
-import useAuth from './../../../Hooks/useAuth';
-
+import useAuth from "./../../../Hooks/useAuth";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import { useState } from "react";
 
 const Navbar = () => {
-  const {user,logOut} = useAuth();
+  const { user, logOut } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
   const handleLogOut = () => {
-       logOut()
-  }
-    const navOptions = (
-        <>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="">#</Link>
-          </li>
-          <li>
-            <Link to="">Contact Us</Link>
-          </li>
-         
-        </>
-      );  
-    return (
-        <div className="navbar  max-w-screen-2xl mx-auto  w-full  fixed z-10 bg-opacity-25 bg-teal-400">
+    logOut();
+  };
+  const navOptions = (
+    <>
+      <li>
+        <Link className="linkDesign" to="/">
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link className="linkDesign" to="">
+          Dashboard
+        </Link>
+      </li>
+      <li>
+        <Link className="linkDesign" to="">
+          Contact Us
+        </Link>
+      </li>
+    </>
+  );
+  return (
+    <div className="w-full   fixed ">
+      <div className="navbar container bg-gradient-to-r from-cyan-600 to-indigo-500  max-w-screen-2xl mx-auto rounded-b-xl  shadow-xl z-10 ">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              onClick={toggleDrawer}
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-5 w-5 text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -41,54 +58,77 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <ul
+            {/* <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-gray-100  rounded-box z-[1] text-black mt-3 w-36 md:w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-blue-gray-100   z-[1] text-black mt-3 w-36 md:w-52 p-2 shadow rounded-md"
             >
               {navOptions}
-            </ul>
+            </ul> */}
+            <Drawer
+              open={isOpen}
+              onClose={toggleDrawer}
+              direction="top"
+              className="menu menu-lg dropdown-content bg-blue-gray-100   content-center w-full z-[1] text-black "
+            >
+              <div>
+                <ul tabIndex={0} className=" w-full">
+                  <li>
+                    <Link className=" " to="/">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="" to="">
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="" to="">
+                      Contact Us
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </Drawer>
           </div>
-          <a className=" text-xl ">
+          <Link
+            to="/"
+            className=" text-xl anton pl-4 md:text-2xl lg:text-3xl text-white"
+          >
             GriDesk
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navOptions}</ul>
+          <ul className="menu menu-horizontal px-1 text-white">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-       
           {user ? (
             <>
-           
               <button
                 onClick={handleLogOut}
-                className="btn btn-sm btn-outline "
+                className="btn btn-sm btn-outline text-white"
               >
                 Log Out
               </button>
             </>
           ) : (
             <>
-              
-
               <Link
                 to="/login"
-                className="btn btn-sm btn-outline  mr-2"
+                className="btn btn-sm btn-outline text-white mr-2"
               >
                 Login
               </Link>
 
-              <Link
-                to="/signUp"
-                className="btn btn-sm btn-outline "
-              >
+              <Link to="/signUp" className="btn btn-sm text-white btn-outline ">
                 Sign Up
               </Link>
             </>
           )}
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default Navbar;

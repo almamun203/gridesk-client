@@ -20,12 +20,12 @@ const Login = () => {
         })
       }
     return (
-        <div  className="flex justify-center bg-no-repeat bg-cover pt-16 login min-h-screen">
+        <div  className="container mx-auto  max-w-screen-2xl flex justify-center bg-gradient-to-r from-light-green-500 to-light-green-900 bg-cover lg:pt-[68px] pt-16 login min-h-screen">
               <Helmet>
                 <title>Login | GriDesk</title>
             </Helmet>
         <div className=" w-full max-w-sm shrink-0 ">
-            <h2 className=" text-4xl text-center">Login</h2>
+            <h2 className=" text-4xl text-center text-white">Login</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               
               
@@ -86,7 +86,7 @@ const Login = () => {
 
               <div className="form-control pt-6">
                 <input
-                  className="btn text-white hover:text-black bg-[#D1A054]"
+                  className="btn bg-gradient-to-r from-cyan-800 to-indigo-800 border-none text-white hover:text-black bg-[#D1A054]"
                   type="submit"
                   value="Sign Up"
                 />

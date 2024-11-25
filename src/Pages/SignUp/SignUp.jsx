@@ -43,12 +43,12 @@ const SignUp = () => {
     });
   };
     return (
-        <div className="flex justify-center bg-no-repeat bg-cover pt-16 md:mt-1 login min-h-screen">
+        <div className="container mx-auto  max-w-screen-2xl flex justify-center bg-gradient-to-r from-light-green-500 to-light-green-900 bg-cover pt-6 lg:pt-[36px] login min-h-screen">
             <Helmet>
                 <title>SignUp | GriDesk</title>
             </Helmet>
             <div className=" w-full max-w-sm shrink-0 ">
-            <h2 className=" text-4xl text-center">Sign Up</h2>
+            <h2 className=" text-4xl text-center text-white">Sign Up</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -129,7 +129,7 @@ const SignUp = () => {
 
               <div className="form-control pt-6">
                 <input
-                  className="btn text-white hover:text-black bg-[#D1A054]"
+                  className="btn text-white hover:text-black bg-gradient-to-r from-cyan-800 to-indigo-800 border-none"
                   type="submit"
                   value="Sign Up"
                 />
