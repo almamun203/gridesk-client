@@ -18,7 +18,7 @@ const Banner = () => {
           The everything app, for work. <br /> One place for teams of all sizes
           to communicate and get work done.
         </p>
-       <DottedButton to={'/dashboard'} text={'Dashboard'} ></DottedButton>
+       <DottedButton to={'dashboard'} text={'Dashboard'} ></DottedButton>
        
       </div>
      

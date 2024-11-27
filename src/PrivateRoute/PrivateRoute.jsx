@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
-import { AuthContext } from "./Provider/AuthProvider";
+
 import { Navigate, useLocation } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 
 const PrivateRoute = ({children}) => {
-    const {user,loading} = useContext(AuthContext);
+    const {user,loading} = useAuth();
     const location = useLocation();
     if(loading){
-        return <progress className="progress w-full bg-white absolute mt-16"></progress>
+        return <div className="flex justify-center items-center w-full min-h-screen"> <span className="loading loading-bars loading-xl text-indigo-600 "></span> </div>
     }
     if(user){
         return children;

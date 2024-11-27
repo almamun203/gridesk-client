@@ -21,7 +21,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="linkDesign" to="">
+        <Link className="linkDesign" to="dashboard">
           Dashboard
         </Link>
       </li>
@@ -78,7 +78,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link className="" to="">
+                    <Link className="" to="dashboard">
                       Dashboard
                     </Link>
                   </li>

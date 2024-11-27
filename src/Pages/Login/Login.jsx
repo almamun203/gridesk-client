@@ -1,26 +1,46 @@
 import { Helmet } from "react-helmet-async";
 import "./Login.css"
 import { useForm } from 'react-hook-form';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin";
+import toast from "react-hot-toast";
 
 const Login = () => {
-    const {createUser}=useAuth();
+    const {signIn}=useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm();
       const onSubmit = (data)=>{
-        createUser(data.email,data.password)
+        signIn(data.email,data.password)
         .then((result) => {
             const loggedUser = result.user;
             console.log(loggedUser);
-        })
+            toast.success('Logged in Successfully.', {
+              style: {
+                border: '1px solid #713200',
+                padding: '16px',
+                color: '#713200',
+              },
+              iconTheme: {
+                primary: '#713200',
+                secondary: '#FFFAEE',
+              },
+            });
+            navigate(from, { replace: true });
+        }).catch(error=>{
+          toast.error(error.message)
+          console.log(error);
+         }
+       )
       }
     return (
-        <div  className="container mx-auto  max-w-screen-2xl flex justify-center bg-gradient-to-r from-light-green-500 to-light-green-900 bg-cover lg:pt-[68px] pt-16 login min-h-screen">
+        <div  className="-mt-4 container mx-auto  max-w-screen-2xl flex justify-center bg-gradient-to-r from-light-green-500 to-light-green-900 bg-cover lg:pt-[68px] pt-16 login min-h-screen">
               <Helmet>
                 <title>Login | GriDesk</title>
             </Helmet>
@@ -37,11 +57,11 @@ const Login = () => {
                   type="email"
                   name="email"
                   placeholder="Type Here"
-                  className="input "
+                  className="input rounded-none"
                   {...register("email", { required: true })}
                 />
                 {errors.email && (
-                  <span className=" text-red-600 text-xs">
+                  <span className=" text-red-900 text-xs">
                     Email is required
                   </span>
                 )}
@@ -54,7 +74,7 @@ const Login = () => {
                   type="password"
                   name="password"
                   placeholder="Enter your password"
-                  className="input "
+                  className="input rounded-none"
                   {...register("password", {
                     required: true,
                     minLength: 6,
@@ -62,22 +82,22 @@ const Login = () => {
                   })}
                 />
                 {errors.password?.type === "required" && (
-                  <span className=" text-red-600 text-xs">
+                  <span className=" text-red-900 text-xs">
                     Password is required
                   </span>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <p className=" text-red-600 text-xs">
+                  <p className=" text-red-900 text-xs">
                     Password must be at least 6 characters.
                   </p>
                 )}
                 {errors.password?.type === "maxLength" && (
-                  <p className=" text-red-600 text-xs">
+                  <p className=" text-red-900 text-xs">
                     Password must be less than 20 characters.
                   </p>
                 )}
                 {errors.password?.type === "pattern" && (
-                  <p className=" text-red-600 text-xs">
+                  <p className=" text-red-900 text-xs">
                     Password must have at least one uppercase,one lowercase,one
                     number and one special character.
                   </p>
@@ -86,7 +106,7 @@ const Login = () => {
 
               <div className="form-control pt-6">
                 <input
-                  className="btn bg-gradient-to-r from-cyan-800 to-indigo-800 border-none text-white hover:text-black bg-[#D1A054]"
+                  className="btn rounded-none bg-gradient-to-r from-cyan-800 to-indigo-800 border-none text-white hover:text-black bg-[#D1A054]"
                   type="submit"
                   value="Sign Up"
                 />
