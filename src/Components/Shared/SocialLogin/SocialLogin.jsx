@@ -1,10 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 
 const SocialLogin = () => {
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const axiosPublic = useAxiosPublic();
   const { GoogleSign } = useAuth();
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const SocialLogin = () => {
         }
       });
 
-      navigate("/");
+      navigate(from, { replace: true });
     });
   };
   return (

@@ -26,7 +26,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="linkDesign" to="">
+        <Link className="linkDesign" to="/contact">
           Contact Us
         </Link>
       </li>
@@ -41,7 +41,7 @@ const Navbar = () => {
               onClick={toggleDrawer}
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden"
+              className="btn btn-ghost md:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,17 +58,11 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            {/* <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-blue-gray-100   z-[1] text-black mt-3 w-36 md:w-52 p-2 shadow rounded-md"
-            >
-              {navOptions}
-            </ul> */}
             <Drawer
               open={isOpen}
               onClose={toggleDrawer}
               direction="top"
-              className="menu menu-lg dropdown-content bg-blue-gray-100   content-center w-full z-[1] text-black "
+              className="menu menu-lg dropdown-content bg-blue-gray-100   content-center w-full z-[1] text-black block"
             >
               <div>
                 <ul tabIndex={0} className=" w-full">
@@ -83,7 +77,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link className="" to="">
+                    <Link className="" to="/contact">
                       Contact Us
                     </Link>
                   </li>
@@ -104,12 +98,26 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <>
-              <button
-                onClick={handleLogOut}
-                className="btn btn-sm btn-outline text-white"
-              >
-                Log Out
-              </button>
+              <div className="dropdown dropdown-bottom dropdown-end">
+                <div tabIndex={0} role="button" className="avatar">
+                  <div className="  w-8 mr-3 rounded-full ring ring-offset-2 tooltip tooltip-left " data-tip={user?.displayName}>
+                    <img src={user?.photoURL} />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-gray-800 rounded-box z-[1] w-52  shadow"
+                >
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="btn btn-sm btn-outline text-white"
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </>
           ) : (
             <>

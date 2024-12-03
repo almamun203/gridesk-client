@@ -42,7 +42,8 @@ import AllEmployees from "./src/Pages/Dashboard/AllEmployees/AllEmployees";
         {
           path:'allEmployees',
           element:<AllEmployees></AllEmployees>
-        }
+        },
+        {}
       ]
     }
   ]);
